@@ -199,6 +199,40 @@ async def gpt_4o_mini_complete(
     )
 
 
+async def gpt_4_1_mini_complete(
+    prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
+) -> str:
+    """GPT-4.1-mini completion function."""
+    keyword_extraction = kwargs.pop("keyword_extraction", None)
+    if keyword_extraction:
+        kwargs["response_format"] = GPTKeywordExtractionFormat
+    return await openai_complete_if_cache(
+        "gpt-4.1-mini",
+        prompt,
+        system_prompt=system_prompt,
+        history_messages=history_messages,
+        **kwargs,
+    )
+
+
+async def deepseek_complete(
+    prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
+) -> str:
+    """DeepSeek API completion function using deepseek-chat model."""
+    keyword_extraction = kwargs.pop("keyword_extraction", None)
+    if keyword_extraction:
+        kwargs["response_format"] = GPTKeywordExtractionFormat
+    return await openai_complete_if_cache(
+        "deepseek-chat",
+        prompt,
+        system_prompt=system_prompt,
+        history_messages=history_messages,
+        base_url="https://api.deepseek.com/v1",
+        api_key=os.environ.get("DEEPSEEK_API_KEY"),
+        **kwargs,
+    )
+
+
 async def nvidia_openai_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
 ) -> str:

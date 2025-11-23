@@ -19,3 +19,59 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+dependencies = [
+    "accelerate",
+    "aiofiles",
+    "aiohttp",
+    "configparser",
+    "graspologic",
+    "json_repair",
+    "httpx",
+    "nano-vectordb",
+    "networkx",
+    "nltk",
+    "numpy",
+    "openai",
+    "pipmaster",
+    "pydantic",
+    "PyPDF2",
+    "python-docx",
+    "python-dotenv",
+    "python-pptx",
+    "rouge",
+    "sentence-transformers",
+    "setuptools",
+    "scikit-learn",
+    "tenacity",
+    "tiktoken",
+    "tqdm",
+    "transformers",
+    "xxhash",
+]
+
+[project.optional-dependencies]
+api = [
+    "ascii_colors",
+    "fastapi",
+    "nest_asyncio",
+    "python-multipart",
+    "torch",
+    "uvicorn",
+]
+
+[project.scripts]
+minirag-server = "minirag.api.minirag_server:main"
+
+[project.urls]
+Homepage = "https://github.com/HKUDS/MiniRAG"
+Repository = "https://github.com/HKUDS/MiniRAG"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "docs*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+ignore = ["E402"]
