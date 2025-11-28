@@ -34,7 +34,7 @@ from minirag.utils import EmbeddingFunc
 import os
 
 rag = MiniRAG(
-    working_dir="./my_index",
+    working_dir="./LiHua-World",  # Index directory (created automatically)
     llm_model_func=deepseek_complete,
     embedding_func=EmbeddingFunc(
         embedding_dim=1024,
@@ -58,6 +58,15 @@ Set environment variables:
 ```bash
 export DEEPSEEK_API_KEY=your_key
 export SILICONFLOW_API_KEY=your_key
+```
+
+**Reproduce paper results:**
+```bash
+# Index the dataset (creates ./LiHua-World directory)
+python ./reproduce/Step_0_index.py --model PHI
+
+# Run Q&A evaluation
+python ./reproduce/Step_1_QA.py --model PHI
 ```
 
 ## Supported Providers
