@@ -62,7 +62,12 @@ export SILICONFLOW_API_KEY=your_key
 
 **Reproduce paper results:**
 ```bash
-# Index the dataset (creates ./LiHua-World directory)
+# First, extract the dataset
+cd dataset/LiHua-World/data
+unzip LiHuaWorld.zip
+cd ../../..
+
+# Index the dataset (creates ./LiHua-World index directory)
 python ./reproduce/Step_0_index.py --model PHI
 
 # Run Q&A evaluation
